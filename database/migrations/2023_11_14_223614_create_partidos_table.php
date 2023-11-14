@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->unique();
             $table->unsignedBigInteger('equipo_local');
             $table->unsignedBigInteger('equipo_visitante');
-            $table->string('cuidad', 20);
+            $table->enum('estado', ['no_iniciado', 'finalizado'])->default('no_iniciado');
             $table->date('fecha');
             $table->timestamps();
 
