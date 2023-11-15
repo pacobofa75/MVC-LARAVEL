@@ -10,10 +10,7 @@ class PartidoController extends Controller
 {
     
     public function index() {
-        
-        $partidos = Partido::with('equipoLocal', 'equipoVisitante')->get();
-
-        $partidos = Partido::all();
+        $partidos = Partido::paginate(10);
 
         return view('partidos.index', compact('partidos'));
     }
@@ -29,6 +26,7 @@ class PartidoController extends Controller
         $partido->fecha_partido = $request->input('fecha_partido');
         $partido->equipo_local_id = $request->input('equipo_local_id');
         $partido->equipo_visitante_id = $request->input('equipo_visitante_id');
+        $partido->ganador = $request->input('ganador');
     
         $partido->save();
     
@@ -36,13 +34,12 @@ class PartidoController extends Controller
     }
 
     public function show(){
-        $partidos = partido::orderBy('id', 'desc')->paginate();
+        $partidos = Partido::orderBy('id', 'desc')->paginate(10);
 
         return view('partidos.show', ['partidos' => $partidos]);
     }
 
-    public function edit(Partido $partido){
-
+    public function edit(Partido $partido) {
         return view('partidos.edit', compact('partido'));
     }
 
@@ -52,6 +49,7 @@ class PartidoController extends Controller
         $partido->fecha_partido = $request->input('fecha_partido');
         $partido->equipo_local_id = $request->input('equipo_local_id');
         $partido->equipo_visitante_id = $request->input('equipo_visitante_id');
+        $partido->ganador = $request->input('ganador');
     
         $partido->save();
         return redirect()->route('partidos.index');
@@ -59,6 +57,6 @@ class PartidoController extends Controller
     
     public function delete(Partido $partido) {
         $partido->delete();
-        return view('partidos.show');
+        return redirect()->route('partidos.index');
     }
 }
