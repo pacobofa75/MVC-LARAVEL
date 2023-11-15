@@ -2,33 +2,26 @@
 
 namespace Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Equipo;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-
-
-class UserFactory extends Factory
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Equipo>
+ */
+class EquipoFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Equipo::class;
-
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'nombre' => $this->faker->unique()->word,
-            'ciudad' => $this->faker->unique()->word,
+            'ciudad' => $this->faker->unique()->city,
         ];
     }
 }
 
 
-?>

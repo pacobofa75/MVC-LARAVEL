@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Equipo::factory(10)->create();
-        \App\Models\Partido::factory(10)->create();
+
+        
+        $this->call(EquiposSeeder::class);
+        $this->call(PartidosSeeder::class);
+        
     }
 }

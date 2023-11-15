@@ -3,17 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Partido extends Model
 {
+
     protected $table = 'partidos';
 
     protected $fillable = [
+        'equipo_local',
+        'equipo_visitante',
         'nombre',
         'fecha_partido',
         'estado',
-        'equipo_local_id',
-        'equipo_visitante_id'
     ];
 
     public function equipoLocal()
@@ -25,4 +27,5 @@ class Partido extends Model
     {
         return $this->belongsTo('App\Models\Equipo', 'equipo_visitante_id');
     }
+    use HasFactory;
 }
