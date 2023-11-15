@@ -28,7 +28,7 @@ class PartidoFactory extends Factory
            'equipo_visitante' => function () {
                return Equipo::factory()->create()->id;
            },
-           'estado' => $this->faker->randomElement(['no_iniciado', 'finalizado']),
+           'ganador' => $this->faker->randomElement(['equipo_local', 'equipo_visitante']),
            'fecha' => $this->faker->date(),
        ];
    }

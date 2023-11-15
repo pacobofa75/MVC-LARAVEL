@@ -15,7 +15,7 @@ class Partido extends Model
         'equipo_visitante',
         'nombre',
         'fecha_partido',
-        'estado',
+        'ganador',
     ];
 
     public function equipoLocal()
