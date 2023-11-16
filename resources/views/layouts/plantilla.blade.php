@@ -8,19 +8,19 @@
 <body class="bg-gray-100">
 
     <header class="bg-red-300 p-4">
-        <img src="images/Laravel MVC.png" alt="Logo" class="mx-auto" style="height: 150px;">
+        <img src="images/Laravel MVC9.png" alt="Logo" class="mx-auto" style="height: 180px;">
 
-    <nav class="p-4">
+    <nav class="p-2">
       <div class="container mx-auto">
         <ul class="flex justify-center space-x-8">
           <li>
-            <a class="text-white text-3xl font-bold" href="#">Inicio</a>
+            <a class="text-white text-2xl font-bold hover:text-gray-600" href="#">Inicio</a>
           </li>
           <li>
-            <a class="text-gray-200 text-3xl font-bold" href="#">Partidos</a>
+            <a class="text-gray-200 text-2xl font-bold hover:text-gray-600" href="#">Partidos</a>
           </li>
           <li>
-            <a class="text-gray-200 text-3xl font-bold" href="#">Equipos</a>
+            <a class="text-gray-200 text-2xl font-bold hover:text-gray-600" href="#">Equipos</a>
           </li>
         </ul>
       </div>
