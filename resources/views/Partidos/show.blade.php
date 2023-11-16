@@ -28,19 +28,15 @@
                 <table class="table-auto w-full mt-10">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2">Nombre</th>
                             <th class="px-4 py-2">Fecha del partido</th>
                             <th class="px-4 py-2">Equipo local</th>
                             <th class="px-4 py-2">Equipo visitante</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $partidos = App\Models\partido::all();
-                        @endphp
+
                         @foreach ($partidos as $partido)
                             <tr>
-                                <td class="px-4 py-2">{{ $partido->nombre }}</td>
                                 <td class="px-4 py-2">{{ $partido->fecha_partido }}</td>
                                 <td class="px-4 py-2">{{ $partido->equipoLocal->nombre }}</td>
                                 <td class="px-4 py-2">{{ $partido->equipoVisitante->nombre }}</td>

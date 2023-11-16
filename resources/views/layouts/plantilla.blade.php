@@ -12,15 +12,15 @@
 
     <nav class="p-2">
       <div class="container mx-auto">
-        <ul class="flex justify-center space-x-8">
+        <ul class="flex justify-center space-x-4">
           <li>
-            <a class="text-white text-2xl font-bold hover:text-gray-600" href="#">Inicio</a>
+            <a class="text-white text-2xl font-bold hover:text-gray-600" href='/'>Inicio</a>
           </li>
           <li>
-            <a class="text-gray-200 text-2xl font-bold hover:text-gray-600" href="#">Partidos</a>
+            <a href="{{route('equipos.index')}}" class="text-gray-200 text-2xl font-bold hover:text-gray-600">equipos</a>
           </li>
           <li>
-            <a class="text-gray-200 text-2xl font-bold hover:text-gray-600" href="#">Equipos</a>
+            <a href="{{route('partidos.index')}}" class="text-gray-200 text-2xl font-bold hover:text-gray-600">partidos</a>
           </li>
         </ul>
       </div>

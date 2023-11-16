@@ -30,7 +30,7 @@ class EquipoController extends Controller{
     public function show(){
         $equipos = Equipo::orderBy('id', 'desc')->paginate(10);
 
-        return view('equipos.show', ['equipos' => $equipos]);
+        return view('equipos.show')->with('equipos', $equipos);
     }
 
     public function edit(Equipo $equipo){

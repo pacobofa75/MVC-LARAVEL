@@ -12,14 +12,7 @@
 
         <form action="{{ route('partidos.store') }}" method="POST">
             @csrf
-            @php
-                $equipos = App\Models\Equipo::all();
-            @endphp
-            <div class="mt-4">
-                <label for="nombre" class="block font-bold">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring 
-                focus:ring-indigo-200 focus:ring-opacity-50" required>
-            </div>
+
 
             <div class="mt-4">
                 <label for="fecha_partido" class="block font-bold">Fecha del partido:</label>

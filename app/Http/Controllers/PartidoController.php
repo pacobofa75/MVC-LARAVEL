@@ -22,7 +22,6 @@ class PartidoController extends Controller
     public function store(Request $request) {
 
         $partido = new Partido();
-        $partido->nombre = $request->input('nombre');
         $partido->fecha_partido = $request->input('fecha_partido');
         $partido->equipo_local_id = $request->input('equipo_local_id');
         $partido->equipo_visitante_id = $request->input('equipo_visitante_id');
@@ -36,7 +35,7 @@ class PartidoController extends Controller
     public function show(){
         $partidos = Partido::orderBy('id', 'desc')->paginate(10);
 
-        return view('partidos.show', ['partidos' => $partidos]);
+        return view('partidos.show')->with('partidos', $partidos);
     }
 
     public function edit(Partido $partido) {
@@ -45,7 +44,6 @@ class PartidoController extends Controller
 
     public function update(Request $request, Partido $partido){   
 
-        $partido->nombre = $request->input('nombre');
         $partido->fecha_partido = $request->input('fecha_partido');
         $partido->equipo_local_id = $request->input('equipo_local_id');
         $partido->equipo_visitante_id = $request->input('equipo_visitante_id');
