@@ -44,11 +44,10 @@
     </table>
 
 </div>
-{{ $equipos->links() }}
-<div class="flex justify-center mt-8">
-    <a href="{{route('equipos.index')}}" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none
-     focus:bg-gray-600">Volver al menú de equipos</a>
+<div class="flex justify-center mb-4">
+    {{ $equipos->links() }}
 </div>
+
 @endsection
 
 <script>

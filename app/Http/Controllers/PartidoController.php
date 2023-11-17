@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Partido;
+use App\Models\Equipo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,14 @@ class PartidoController extends Controller
         return view('partidos.index', compact('partidos'));
     }
 
-    public function create(){
-        return view('partidos.create');
+    public function create()
+    {
+        $equipos = Equipo::all();
+        return view('partidos.create', compact('equipos'));
     }
 
     public function store(Request $request) {
-
+        
         $partido = new Partido();
         $partido->fecha_partido = $request->input('fecha_partido');
         $partido->equipo_local_id = $request->input('equipo_local_id');
@@ -29,7 +32,7 @@ class PartidoController extends Controller
     
         $partido->save();
     
-        return redirect()->route('partidos.index');
+        return redirect()->route('partidos.index', compact('equipos'));
     }
 
     public function show(){
