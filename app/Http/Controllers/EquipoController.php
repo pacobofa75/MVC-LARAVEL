@@ -28,9 +28,9 @@ class EquipoController extends Controller{
         return view('equipos.index');
     }
     public function show(){
-        $equipos = Equipo::orderBy('id', 'desc')->paginate(10);
+        $equipos = Equipo::paginate(10);
 
-        return view('equipos.show')->with('equipos', $equipos);
+        return view('equipos.show', compact('equipos'))->with('equipos', $equipos);
     }
 
     public function edit(Equipo $equipo){
@@ -46,8 +46,10 @@ class EquipoController extends Controller{
         return redirect()->route('equipos.index');
     }
     
-    public function delete(Equipo $equipo) {
+    public function delete(string $id)
+    {
+        $equipo = Equipo::find($id);
         $equipo->delete();
-        return view('Equipos.show');
+        return redirect('/equipos');
     }
 }
