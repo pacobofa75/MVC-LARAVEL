@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <h1 class="text-3xl font-bold mb-4 mt-8 text-center">Esta es la lista de equipos</h1>
 <div class="text-center flex w-1/2 mx-auto mt-8">
     <table class="table-auto w-full mt-8">

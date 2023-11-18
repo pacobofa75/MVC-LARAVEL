@@ -1,63 +1,57 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar partidos</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <style>
-        .btn-eliminar {
-            float: right;
-            margin-right: 10px;
-        }
+@extends('layouts.plantilla')
 
-        .btn-editar {
-            float: right;
-            margin-right: 10px;
-        }
-        .div-recuadro {
-          width: 100%;
-          max-width: 1200px;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
-    <div class="bg-white rounded-lg shadow-md p-8 max-w-md w-full div-recuadro">
-        <h1 class="text-3xl font-bold mb-4">Esta es la lista de partidos</h1>
+@section('content')
 
-                <table class="table-auto w-full mt-10">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2">Fecha del partido</th>
-                            <th class="px-4 py-2">Equipo local</th>
-                            <th class="px-4 py-2">Equipo visitante</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<h1 class="text-3xl font-bold mb-4 mt-8 text-center">Esta es la lista de partidos</h1>
+<div class="text-center flex w-1/2 mx-auto mt-8">
+    <table class="table-auto w-full mt-8">
+        <thead>
+            <tr>
+                <th class="px-2 py-2">Fecha del partido</th>
+                <th class="px-2 py-2">Equipo local</th>
+                <th class="px-2 py-2">Equipo visitante</th>
+                <th class="px-2 py-2">Ganador</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                        @foreach ($partidos as $partido)
-                            <tr>
-                                <td class="px-4 py-2">{{ $partido->fecha_partido }}</td>
-                                <td class="px-4 py-2">{{ $partido->equipoLocal->nombre }}</td>
-                                <td class="px-4 py-2">{{ $partido->equipoVisitante->nombre }}</td>
-                                <td>
-                                    <a href="{{ route('partidos.edit', $partido->id) }}" class="btn btn-editar bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600 mb-3">Editar</a>
-                                    <form action="{{ route('partidos.delete', $partido->id)}}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-eliminar bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600 mb-3" onclick="return confirmarEliminar()">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="flex justify-center mt-8">
-                    <a href="{{route('partidos.index')}}" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Volver al menú de partidos</a>
-                </div>
-    </div>
+            @forelse ($partidos as $partido)
+                <tr>
+                    <td class="px-4 py-2">{{ $partido->fecha }}</td>
+                    <td class="px-4 py-2">{{ $partido->equipoLocal->nombre }}</td>
+                    <td class="px-4 py-2">{{ $partido->equipoVisitante->nombre }}</td>
+                    <td class="px-4 py-2">{{ $partido->ganadorEquipo->nombre }}</td>
+                    <td>
+                        <form action="{{ route('partidos.delete', $partido->id)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                        <div class=" flex justify-center">
+                            <button type="button" onclick="window.location='{{ route('partidos.edit', $partido->id) }}'" class="bg-gray-300 hover:bg-red-300
+                                 text-gray-800 font-bold mt-6 w-1/2 h-full py-2 px-4 rounded-l">
+                                Editar
+                            </button>
+                            <button type="submit" class="bg-gray-300 hover:bg-red-300 text-gray-800 font-bold mt-6 h-full w-1/2 py-2 px-4 rounded-r" 
+                            onclick="return confirmarEliminar()">Eliminar
+                            </button>
+                            </form>
+                        </div> 
+                    </td>
+                </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No hay partidos.</td>
+                    </tr>
+            @endforelse
+        </tbody>
+    
+    </table>
+</div>
+<div class="flex justify-center mb-4">
+    {{ $partidos->links() }}
+</div>
 
-</body>
+@endsection
+
 <script>
 function confirmarEliminar() {
   return confirm("¿Estás seguro de que quieres eliminar este partido?");

@@ -20,18 +20,18 @@ class PartidoFactory extends Factory
    protected $model = Partido::class;
 
    public function definition(): array
-   {
-       return [
-           'equipo_local' => function () {
-               return Equipo::factory()->create()->id;
-           },
-           'equipo_visitante' => function () {
-               return Equipo::factory()->create()->id;
-           },
-           'ganador' => $this->faker->randomElement(['equipo_local', 'equipo_visitante']),
-           'fecha' => $this->faker->date(),
-       ];
-   }
+{
+    $equipoLocal = Equipo::factory()->create();
+    $equipoVisitante = Equipo::factory()->create();
+
+    return [
+        'equipo_local_id' => $equipoLocal->id,
+        'equipo_visitante_id' => $equipoVisitante->id,
+        'ganador' => $this->faker->randomElement([$equipoLocal->id, $equipoVisitante->id]),
+        'fecha' => $this->faker->date(),
+    ];
+}
+
 }
 
 

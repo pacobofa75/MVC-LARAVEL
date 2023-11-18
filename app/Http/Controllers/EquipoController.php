@@ -26,10 +26,10 @@ class EquipoController extends Controller{
 
         $equipo->save();
 
-        return view('equipos.index');
+        return redirect()->route('equipos.show');
     }
     public function show(){
-        $equipos = Equipo::paginate(10);
+        $equipos = Equipo::orderBy('id', 'desc')->paginate(10);
 
         return view('equipos.show', compact('equipos'))->with('equipos', $equipos);
     }

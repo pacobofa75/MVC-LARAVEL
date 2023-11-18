@@ -11,9 +11,9 @@ class Partido extends Model
     protected $table = 'partidos';
 
     protected $fillable = [
-        'equipo_local',
-        'equipo_visitante',
-        'fecha_partido',
+        'equipo_local_id',
+        'equipo_visitante_id',
+        'fecha',
         'ganador',
     ];
 
@@ -26,5 +26,9 @@ class Partido extends Model
     {
         return $this->belongsTo('App\Models\Equipo', 'equipo_visitante_id');
     }
+    public function ganadorEquipo()
+{
+    return $this->belongsTo(Equipo::class, 'ganador');
+}
     use HasFactory;
 }
