@@ -19,18 +19,19 @@ class EquipoController extends Controller{
     }
 
     public function store(Request $request){
+        
         $equipo = new Equipo();
         $equipo->nombre = $request->input('nombre');
         $equipo->ciudad = $request->input('ciudad');
 
         $equipo->save();
 
-        return view('equipos.index');
+        return redirect()->route('equipos.show');
     }
     public function show(){
         $equipos = Equipo::orderBy('id', 'desc')->paginate(10);
 
-        return view('equipos.show', ['equipos' => $equipos]);
+        return view('equipos.show', compact('equipos'))->with('equipos', $equipos);
     }
 
     public function edit(Equipo $equipo){
@@ -43,11 +44,13 @@ class EquipoController extends Controller{
         $equipo->ciudad = $request->ciudad;
     
         $equipo->save();
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.show');
     }
     
-    public function delete(Equipo $equipo) {
+    public function delete(string $id)
+    {
+        $equipo = Equipo::find($id);
         $equipo->delete();
-        return view('Equipos.show');
+        return redirect()->route('equipos.show');
     }
 }
