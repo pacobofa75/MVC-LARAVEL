@@ -7,8 +7,8 @@
 </head>
 <body class="bg-gray-100">
 
-    <header class="bg-red-300 p-4">
-        <img src="images/Laravel MVCs.png" alt="Logo" class="mx-auto" style="height: 180px;">
+  <header class="bg-red-300 p-4">
+    <img src="{{ asset('images/Laravel MVCs.png') }}" alt="Logo" class="mx-auto" style="height: 180px;">
 
     <nav class="p-2">
       <div class="container mx-auto">
@@ -25,10 +25,10 @@
         </ul>
       </div>
     </nav>
-    </header>
+  </header>
     
 
-    @yield('content')
+  @yield('content')
     
 </body>
 </html>
