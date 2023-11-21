@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Partido;
 use App\Models\Equipo;
 use App\Http\Controllers\Controller;
@@ -72,5 +73,17 @@ class PartidoController extends Controller
         $partido = Partido::find($id);
         $partido->delete();
         return redirect()->route('partidos.show');
+    }
+    public function clasificacion()
+    {
+        $clasificacion = DB::table('MVCLaravel.partidos')  // Ajusta el nombre del esquema (database) según tu configuración
+            ->join('MVCLaravel.equipos', 'partidos.ganador', '=', 'equipos.id')
+            ->select('equipos.nombre', DB::raw('COUNT(*) as victorias'))
+            ->whereNotNull('partidos.ganador')
+            ->groupBy('equipos.nombre', 'partidos.ganador')
+            ->orderByDesc('victorias')
+            ->get();
+
+        return view('partidos.clasificacion', ['clasificacion' => $clasificacion]);
     }
 }

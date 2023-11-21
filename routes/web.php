@@ -31,6 +31,7 @@ Route::controller(EquipoController::class)->group(function(){
 
 
 Route::controller(PartidoController::class)->group(function(){
+    
     Route::get('/partidos', 'index')->name('partidos.index');
     Route::get('/partidos/create', 'create')->name('partidos.create');
     Route::post('/partidos/create', 'store')->name('partidos.store');
@@ -38,4 +39,5 @@ Route::controller(PartidoController::class)->group(function(){
     Route::get('/partidos/{partido}/edit', 'edit')->name('partidos.edit');
     Route::put('/partidos/{partido}/update', 'update')->name('partidos.update');
     Route::delete('/partidos/{partido}/delete', 'delete')->name('partidos.delete');
+    Route::get('/partidos/clasificacion', 'clasificacion')->name('clasificacion');
 });

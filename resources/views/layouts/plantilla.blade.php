@@ -22,6 +22,9 @@
           <li>
             <a href="{{route('partidos.index')}}" class="text-gray-200 text-2xl font-bold hover:text-gray-600">partidos</a>
           </li>
+          <li>
+            <a href="{{route('clasificacion')}}" class="text-gray-200 text-2xl font-bold hover:text-gray-600">clasificación</a>
+          </li>
         </ul>
       </div>
     </nav>
