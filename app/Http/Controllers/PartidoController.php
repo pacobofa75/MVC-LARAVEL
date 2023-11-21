@@ -76,7 +76,7 @@ class PartidoController extends Controller
     }
     public function clasificacion()
     {
-        $clasificacion = DB::table('MVCLaravel.partidos')  // Ajusta el nombre del esquema (database) según tu configuración
+        $clasificacion = DB::table('MVCLaravel.partidos')  
             ->join('MVCLaravel.equipos', 'partidos.ganador', '=', 'equipos.id')
             ->select('equipos.nombre', DB::raw('COUNT(*) as victorias'))
             ->whereNotNull('partidos.ganador')

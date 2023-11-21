@@ -19,7 +19,7 @@
                         <td class="px-4 py-2">{{ $equipo->victorias }}</td>
                         @empty
                         <tr>
-                            <td colspan="6">No hay partidos.</td>
+                            <td colspan="6">No hay equipos.</td>
                     </tr>
                 @endforelse
             </tbody>
